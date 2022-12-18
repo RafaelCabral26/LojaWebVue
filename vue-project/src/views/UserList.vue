@@ -6,7 +6,7 @@ import UserService from "../service/UserService"
 export default {
     components: { navbarVue },
     data() {
-        return { usuarios: [], usuario: {} }
+        return { usuarios: [], usuario: {}}
     },
     mounted() {
         this.listarOld();
@@ -15,11 +15,12 @@ export default {
         listarOld() {
             UserService.list(dados => {
                 this.usuarios = JSON.parse(dados);
-            });
+            })}
+           
         }
 
     }
-}
+
 </script>
 <template>
     <navbarVue></navbarVue>

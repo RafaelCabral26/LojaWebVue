@@ -73,6 +73,18 @@ function enderecoController($method, $router)
                 }
             }
         }
+        if($method == "GET") {
+            if(!empty(strstr($router, "/projetos/LojaWeb/api/index.php/endereco/list"))) {
+            try {
+                $endereco = new Endereco();
+                $result = $endereco->getAll();
+                echo json_encode($result);
+                return json_encode($result);
+            } catch (Exception $e) {
+                throw new Exception("Erro ao pegar endereços" . $e->getMessage());
+            }
+            }
+        } 
 }
 
 

@@ -49,6 +49,27 @@ class Endereco
         
     }
 
+
+        function getAll()
+        {
+            try {
+
+                $dao = new DAO;
+                $conn = $dao->conecta();
+                $sql = "SELECT * from endereço";
+                $stman = $conn->prepare($sql);
+                $stman->execute();
+                return $stman->fetchAll();
+            }catch (Exception $e) {
+                throw new Exception("Erro ao lista endereços" . $e->getMessage());
+            }
+        }
+
+
+
+
+
+
     function update($idcep) 
     {
         try {

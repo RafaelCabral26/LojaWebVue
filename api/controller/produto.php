@@ -82,5 +82,17 @@ if($method == "POST") {
     }
 }
 
+if ($method == "GET") {
+    if (!empty(strstr($router, "/projetos/LojaWeb/api/index.php/produtos/list"))) {
+        try {
+            $produto = new Produto();
+            $result = $produto->getAll();
+            return json_encode($result);
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode("error:" . $e->getMessage());
+        }
 
+    }
+}
 }

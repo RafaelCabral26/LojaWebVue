@@ -20,6 +20,9 @@ import { RouterLink } from 'vue-router';
         <li class="nav-item">
           <RouterLink class="nav-link text-light" to="/listar">Listar Usuarios</RouterLink>
         </li>
+      <li class="nav-item">
+        <RouterLink class="nav-link text-light" to="/enderecos">Endereços</RouterLink>
+      </li>  
       
       </ul>
     </div>

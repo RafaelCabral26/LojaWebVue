@@ -58,6 +58,26 @@ class Produto
             throw new Exception("Erro ao buscar produto" . $e->getMessage());
         }
     }
+
+    function getAll()
+    {
+        try {
+            $dao = new DAO();
+            $conn = $dao->conecta();
+            $sql = "SELECT * from produtos";
+            $stman = $conn->prepare($sql);
+            $stman->execute();
+            $result = $stman->fetchAll();
+            echo json_encode($result);
+            return $result;
+        } catch (Exception $e) {
+            throw new Exception("Erro ao cadastra o endereço!" . $e->getMessage());
+        }
+    }
+
+
+
+
     function update($nome) {
         $dao = new DAO;
         $conn = $dao->conecta();
@@ -92,7 +112,7 @@ class Produto
 
             $dao = new DAO;
             $conn = $dao->conecta();
-        $sql = "UPDATE produtos set produtos.ativo = false where produtos.nome = :nome";
+        $sql = "UPDATE produtos set produtos.ativo = true where produtos.nome = :nome";
         $stman = $conn->prepare($sql);
         $stman->bindParam(":nome",$nome);
         $stman->execute();

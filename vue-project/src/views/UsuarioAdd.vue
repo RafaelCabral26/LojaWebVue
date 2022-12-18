@@ -1,4 +1,4 @@
-<script setup>
+1<script setup>
 import navbarVue from '../components/navbar.vue';
 
 
