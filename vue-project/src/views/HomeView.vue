@@ -28,13 +28,13 @@ export default {
 <template>
   <main>
     <navbarVue></navbarVue>
-    <section class="container  text-center">
+    <section class="container text-center">
       <!-- v-for="produto in produtos" :key="produto"   -->
       <h2 >Produtos</h2>
       <div class="row">
 
         <div class="card mx-auto" style="width: 18rem;" v-for="produto in produtos" :key="produto">
-          <img src="..." class="card-img-top" alt="...">
+          <img class="card-img-top">
           <div class="card-body">
             <h5 class="card-title">{{ produto.nome }}</h5>
             <p class="card-text">{{ produto.descricao}}</p>
