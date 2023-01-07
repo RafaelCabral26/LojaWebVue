@@ -1,8 +1,42 @@
-
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: Dec 21, 2022 at 11:46 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `lojaweb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `nome` varchar(120) DEFAULT NULL,
+  `ativo` tinyint(1) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `endereço`
+--
 
 CREATE TABLE `endereço` (
   `cep` varchar(10) NOT NULL,
@@ -12,21 +46,32 @@ CREATE TABLE `endereço` (
   `uf` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-
+--
+-- Dumping data for table `endereço`
+--
 
 INSERT INTO `endereço` (`cep`, `logradouro`, `bairro`, `cidade`, `uf`) VALUES
 ('23111-111', 'Rua alto alegre', 'Pechincha', 'Rio de janeiro', 'RJ'),
 ('235444-123', 'Rua dos candango', 'Cidade veia', 'Rio de janeiro', 'RJ'),
 ('235444-345', 'Rua dos candango', 'Cidade veia', 'Rio de janeiro', 'RJ');
 
+-- --------------------------------------------------------
 
-CREATE TABLE `funcionario` (
+--
+-- Table structure for table `Funcionario`
+--
+
+CREATE TABLE `Funcionario` (
   `id_funcionario` int(11) NOT NULL,
   `cargo` varchar(50) NOT NULL,
   `id_usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `produtos`
+--
 
 CREATE TABLE `produtos` (
   `nome` varchar(100) DEFAULT NULL,
@@ -42,15 +87,23 @@ CREATE TABLE `produtos` (
   `ativo` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `produtos`
+--
 
 INSERT INTO `produtos` (`nome`, `descricao`, `quant`, `data_alteracao`, `valor`, `largura`, `altura`, `comprimento`, `peso`, `fotos`, `ativo`) VALUES
 ('Rafael', 'descricao do produto', 4, '2020-03-19', 25.55, 20, 10, 15, 40, 'url', 1),
 ('Celulaire', 'descricao do produto', 4, '2020-03-19', 25.55, 20, 10, 15, 40, 'url', 1),
 ('televisao', 'televisao 40 polegadas', 4, '2024-03-19', 22.00, 20, 10, 15, 40, 'url', 1);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuario`
+--
 
 CREATE TABLE `usuario` (
-  `id_usuario` int(11) PRIMARY KEY NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `email` varchar(150) NOT NULL,
   `data_nasc` date DEFAULT NULL,
@@ -60,6 +113,9 @@ CREATE TABLE `usuario` (
   `active` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `usuario`
+--
 
 INSERT INTO `usuario` (`id_usuario`, `nome`, `email`, `data_nasc`, `cpf`, `senha`, `telefone`, `active`) VALUES
 (1256, 'usuer', 'user@email.com', '2022-12-13', '345634563456', '$5$rounds=5000$GOELK43650gr$FZwoaAbfbD42Wo6TOOMTVQHmg.h1.ekKi1O349TUDC0', '243643563456', 1),
@@ -79,7 +135,7 @@ ALTER TABLE `endereço`
 --
 -- Indexes for table `Funcionario`
 --
-ALTER TABLE `funcionario`
+ALTER TABLE `Funcionario`
   ADD PRIMARY KEY (`id_funcionario`),
   ADD KEY `id_usuario` (`id_usuario`);
 
@@ -96,14 +152,14 @@ ALTER TABLE `usuario`
 --
 -- AUTO_INCREMENT for table `Funcionario`
 --
-ALTER TABLE `funcionario`
+ALTER TABLE `Funcionario`
   MODIFY `id_funcionario` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1260;
 
 --
 -- Constraints for dumped tables
@@ -112,6 +168,10 @@ ALTER TABLE `usuario`
 --
 -- Constraints for table `Funcionario`
 --
-ALTER TABLE `funcionario`
+ALTER TABLE `Funcionario`
   ADD CONSTRAINT `Funcionario_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`);
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -4,10 +4,10 @@ export default {
 
     add: function(endereco = new Endereco) {
         console.log(endereco);
-        return http.post("/projetos/LojaWeb/api/index.php/endereco/add", endereco);
+        return http.post("/projetos/lojaweb/api/index.php/endereco/add", endereco);
     },
     get: function(cep) {
-        return http.get("/projetos/LojaWeb/api/index.php/endereco/get", cep);
+        return http.get("/projetos/lojaweb/api/index.php/endereco/get", cep);
     },
     list: function(callback) {
         try {
@@ -17,7 +17,7 @@ export default {
                 console.log(this.responseText);
                 callback(this.responseText);
             }
-            xhttp.open("GET", "http://localhost:80/projetos/LojaWeb/api/index.php/endereco/list", false );
+            xhttp.open("GET", "http://localhost:8000/projetos/lojaweb/api/index.php/endereco/list", false );
             xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
             xhttp.setRequestHeader("Content-type", "application/json;charset=utf-8");
             xhttp.send();

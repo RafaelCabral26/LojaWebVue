@@ -17,8 +17,8 @@ class Usuario
         try {
             $dao = new DAO;
             $conecta = $dao->conecta();
-            $sql = "INSERT into usuario (nome, cpf, email, senha, telefone, data_nasc) VALUES (:nome, :cpf, :email, :senha, :telefone, :data_nasc)";
-            $criptSenha = crypt($this->senha, '$5$rounds=5000$' . 'GOELK43650gr' . '$');
+            $sql = "INSERT into usuario (nome, cpf, email, senha, telefone, data_nasc) VALUES (:nome, :cpf, :email, md5(:senha), :telefone, :data_nasc)";
+            $criptSenha = crypt($this->senha, '$5$rounds=5000$' . $this->email . '$');
 
             $stman = $conecta->prepare($sql);
             $stman->bindParam(":nome", $this->nome);
@@ -113,6 +113,30 @@ class Usuario
             echo "Delete lógico concluido!";
         } catch (Exception $e) {
             throw new Exception("Erro no delete lógico" . $e->getMessage());
+        }
+        
+    }
+
+    function login($email, $senha) 
+    {
+        try {
+
+        $dao = new DAO;;
+        $conn = $dao->conecta();
+        $newsenha = crypt($senha, '$5$rounds=5000$' . $email . '$');
+        $sql = "SELECT id_usuario, nome, cpf, email, telefone, data_nasc from usuario 
+        WHERE usuario.email = :email
+        and usuario.senha = md5(:senha)
+        and usuario.active = true";
+        $stman = $conn->prepare($sql);
+        $stman->bindParam(":email", $email);
+        $stman->bindParam(":senha", $newsenha);
+        $stman->execute();
+        $result = $stman->fetchAll();
+        $ret =  $result ? $result : null;
+        return $ret;
+        }catch(Exception $e) {
+            throw new Exception("Erro ao tentar logar!" . $e->getMessage());
         }
         
     }

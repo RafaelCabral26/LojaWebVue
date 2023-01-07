@@ -5,7 +5,7 @@ include_once "./model/Endereco.php";
 function enderecoController($method, $router)
 {
     if ($method == "POST") {
-        if ($router == "/projetos/LojaWeb/api/index.php/endereco/add") {
+        if ($router == "/projetos/lojaweb/api/index.php/endereco/add") {
             try {
                 $convert = json_decode(file_get_contents("php://input"));
                 $ender = new Endereco();
@@ -22,7 +22,7 @@ function enderecoController($method, $router)
         }
     }
     if($method == "GET") {
-        if(!empty(strstr($router, "/projetos/LojaWeb/api/index.php/endereco/get" ))) {
+        if(!empty(strstr($router, "/projetos/lojaweb/api/index.php/endereco/get" ))) {
         try {
 
             $index = explode("/", $router);
@@ -36,7 +36,7 @@ function enderecoController($method, $router)
         }
     }   
     if($method == "POST") {
-        if(!empty(strstr($router, "/projetos/LojaWeb/api/index.php/endereco/update" ))) {
+        if(!empty(strstr($router, "/projetos/lojaweb/api/index.php/endereco/update" ))) {
             try{
 
                 $index = explode("/", $router);
@@ -59,7 +59,7 @@ function enderecoController($method, $router)
 
 
         if($method == "POST") {
-            if(!empty(strstr($router, "/projetos/LojaWeb/api/index.php/endereco/delete"))) {
+            if(!empty(strstr($router, "/projetos/lojaweb/api/index.php/endereco/delete"))) {
                 
                 try{
                     $index = explode("/", $router);
@@ -74,7 +74,7 @@ function enderecoController($method, $router)
             }
         }
         if($method == "GET") {
-            if(!empty(strstr($router, "/projetos/LojaWeb/api/index.php/endereco/list"))) {
+            if(!empty(strstr($router, "/endereco/list"))) {
             try {
                 $endereco = new Endereco();
                 $result = $endereco->getAll();

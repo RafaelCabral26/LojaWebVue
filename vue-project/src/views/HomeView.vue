@@ -14,7 +14,6 @@ export default {
       productsService.list()
         .then(res => {
           this.produtos = res.data
-          console.log(this.produto)
         }).catch(error => {
           console.log(error);
           alert("Erro ao pegar a lista de usuário!");

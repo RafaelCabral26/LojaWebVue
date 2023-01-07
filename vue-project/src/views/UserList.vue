@@ -9,13 +9,23 @@ export default {
         return { usuarios: [], usuario: {}}
     },
     mounted() {
-        this.listarOld();
+        this.listar();
     },
     methods: {
         listarOld() {
             UserService.list(dados => {
                 this.usuarios = JSON.parse(dados);
-            })}
+            })},
+            listar() {
+                UserService.listar()
+                .then(res => {
+                    console.log(res);
+                    this.usuarios = res.data
+                }).catch(error => {
+                    console.log(error);
+                    alert("Erro ao pegar a lista de usuário!");
+                })
+            }
            
         }
 

@@ -1,4 +1,5 @@
 import { Usuario } from "@/model/User";
+import http from "./config";
 
 export default {
 
@@ -10,7 +11,7 @@ export default {
             xhttp.onload = function () {
                 alert("Cadastrado!");
             }
-                xhttp.open("POST", "http://localhost:80/projetos/LojaWeb/api/index.php/add", false);
+                xhttp.open("POST", "http://localhost:8000/projetos/lojaweb/api/index.php/add", false);
                 xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
                 xhttp.setRequestHeader("Content-type", "application/json;charset=utf-8");
                 xhttp.send(JSON.stringify(usuario));
@@ -27,7 +28,7 @@ export default {
                     console.log(this.responseText);
                     callback(this.responseText);
                 }
-                    xhttp.open("GET", "http://localhost:80/projetos/LojaWeb/api/index.php/list", false);
+                    xhttp.open("GET", "http://localhost:8000/projetos/lojaweb/api/index.php/list", false);
                     xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
                     xhttp.setRequestHeader("Content-type", "application/json;charset=utf-8");
                     xhttp.send();
@@ -37,5 +38,14 @@ export default {
             }
 
 
-        }
+        },
+        login: function (usuario) {
+
+            return http.post("usuario/login", JSON.stringify(usuario));
+        },
+        listar: function () {
+            return http.get("usuario/list");
+        },
+       
+        
     }

@@ -4,7 +4,7 @@ include_once "./model/Produto.php";
 function produtoController($method, $router) 
 {
 if($method == "POST"){
-    if($router == "/projetos/LojaWeb/api/index.php/produtos/add") {
+    if($router == "/projetos/lojaweb/api/index.php/produtos/add") {
         try {
 
         $convert = json_decode(file_get_contents("php://input"));
@@ -27,7 +27,7 @@ if($method == "POST"){
     }
 }
 if($method == "GET") {
-    if(!empty(strstr($router ,"/projetos/LojaWeb/api/index.php/produtos/get"))) {
+    if(!empty(strstr($router ,"/projetos/lojaweb/api/index.php/produtos/get"))) {
         try {
 
             $index = explode("/" ,$router);
@@ -42,7 +42,7 @@ if($method == "GET") {
     }
 }
 if($method == "POST") {
-    if(!empty(strstr($router,"/projetos/LojaWeb/api/index.php/produtos/update" ))) {
+    if(!empty(strstr($router,"/projetos/lojaweb/api/index.php/produtos/update" ))) {
         try {
 
         $index = explode("/", $router);
@@ -69,7 +69,7 @@ if($method == "POST") {
 }
 
 if($method == "POST") {
-    if(!empty(strstr($router, "/projetos/LojaWeb/api/index.php/produtos/delete"))) {
+    if(!empty(strstr($router, "/projetos/lojaweb/api/index.php/produtos/delete"))) {
         try{
             $index = explode("/", $router);
             $nome = $index[count($index) - 1];
@@ -83,7 +83,7 @@ if($method == "POST") {
 }
 
 if ($method == "GET") {
-    if (!empty(strstr($router, "/projetos/LojaWeb/api/index.php/produtos/list"))) {
+    if (!empty(strstr($router, "/projetos/lojaweb/api/index.php/produtos/list"))) {
         try {
             $produto = new Produto();
             $result = $produto->getAll();
